@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { @apply font-display; }
+  h1, h2 { text-wrap: balance; }
+  ::selection { background: #E9B949; color: #172334; }
+  :focus-visible { outline: 3px solid #E9B949; outline-offset: 2px; }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12; }
+  .section-pad { @apply py-20 sm:py-28; }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-leaf;
+  }
+  .eyebrow::before { content: ''; @apply h-px w-8 bg-gold; }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold transition-all duration-300;
+  }
+  .btn-primary { @apply bg-gold text-ink shadow-lg shadow-gold/30 hover:bg-white hover:shadow-xl; }
+  .btn-blue { @apply bg-brand text-white shadow-lg shadow-brand/30 hover:bg-brand-dark; }
+  .btn-green { @apply bg-leaf text-white shadow-lg shadow-leaf/30 hover:bg-leaf-dark; }
+  .btn-ghost { @apply border border-white/50 text-white backdrop-blur hover:bg-white hover:text-brand; }
+  .btn-outline { @apply border border-brand/30 text-brand hover:bg-brand hover:text-white; }
+  .field {
+    @apply w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10;
+  }
+  .field-error { @apply border-red-400 focus:border-red-500 focus:ring-red-100; }
+}
+
+/* Organic image masks */
+.blob-a { border-radius: 58% 42% 63% 37% / 45% 55% 45% 55%; }
+.blob-b { border-radius: 38% 62% 41% 59% / 56% 38% 62% 44%; }
+.blob-c { border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%; }
+.arch { border-radius: 999px 999px 24px 24px; }
+.leaf-mask { border-radius: 0 120px 0 120px; }
+.leaf-mask-rev { border-radius: 120px 0 120px 0; }
+
+.grain {
+  background-image: radial-gradient(rgba(23,74,139,0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  html { scroll-behavior: auto; }
+}
