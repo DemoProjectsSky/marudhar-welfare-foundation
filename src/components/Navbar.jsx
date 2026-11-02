@@ -149,15 +149,15 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled ? 'bg-white/95 py-2 shadow-lg shadow-brand/5 backdrop-blur-xl' : 'bg-transparent py-4'
+        className={`fixed inset-x-0 top-0 z-50 bg-white transition-all duration-500 ${
+          scrolled ? 'py-2 shadow-lg shadow-brand/5' : 'py-4'
         }`}
       >
         <div className="mx-auto flex max-w-[1500px] items-center justify-between gap-4 px-5 lg:px-8">
-          <Logo light={!scrolled} />
+          <Logo />
           <nav aria-label="Main navigation" className="hidden xl:block">
             <ul className="flex items-center">
-              {NAV.map((item) => <DesktopItem key={item.to} item={item} solid={scrolled} />)}
+              {NAV.map((item) => <DesktopItem key={item.to} item={item} solid />)}
             </ul>
           </nav>
           <div className="flex items-center gap-3">
@@ -168,7 +168,7 @@ export default function Navbar() {
             <button
               onClick={() => setMobile(true)}
               aria-label="Open menu"
-              className={`rounded-full p-2.5 xl:hidden ${scrolled ? 'bg-brand text-white' : 'bg-white/15 text-white backdrop-blur'}`}
+              className="rounded-full bg-brand p-2.5 text-white xl:hidden"
             >
               <Menu size={22} />
             </button>
