@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { motion, useScroll, useSpring } from 'framer-motion'
-import { MessageCircle } from 'lucide-react'
+import { MessageCircle, Phone } from 'lucide-react'
 import { ENV } from '../data/site.js'
 
 export function ScrollProgress() {
@@ -31,7 +31,10 @@ export function WhatsAppFloat() {
       className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-xl shadow-green-900/30 transition hover:scale-110"
     >
       <span className="absolute inset-0 animate-ping rounded-full bg-[#25D366] opacity-30" />
-      <MessageCircle size={26} className="relative" />
+      <span className="relative grid h-8 w-8 place-items-center" aria-hidden="true">
+        <MessageCircle size={30} strokeWidth={2.2} className="absolute" />
+        <Phone size={13} strokeWidth={2.6} className="absolute" />
+      </span>
     </a>
   )
 }

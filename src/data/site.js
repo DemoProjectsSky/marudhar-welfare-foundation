@@ -10,7 +10,7 @@ export const ORG = {
   cin: 'U85300RJ2022NPL082507',
   section8: '136801',
   csr: '00042532',
-  tax: '12A / 80G',
+  tax: '12A & 80G',
   iso: 'ISO 9001:2015',
   email: 'marudharwelfarefoundation@gmail.com',
   phone: '+91 8209541883',

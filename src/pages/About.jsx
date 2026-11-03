@@ -36,17 +36,19 @@ export default function About() {
             <Reveal delay={0.1}>
               <p className="-mt-6 leading-relaxed text-ink/75">
                 Shree Marudhar Welfare Foundation is a registered Section 8 non-profit company based in Bap, Rajasthan.
-                The foundation works to support communities across education, healthcare, women and child development,
-                environmental protection, rural development and social welfare.
+                Its programme priorities span education, healthcare, women and child development, environmental
+                protection, rural development and social welfare, with a focus on the needs of rural communities.
               </p>
               <p className="mt-4 leading-relaxed text-ink/75">
-                We believe sustainable change happens when communities, volunteers, donors and institutions work together
-                with transparency and respect.
+                The foundation aims to bring communities, volunteers, donors and institutions together to support
+                opportunity and dignity, working with transparency and respect.
               </p>
             </Reveal>
-            <Stagger className="mt-8 flex flex-wrap gap-2">
+            <Stagger className="mt-8 flex flex-wrap gap-3">
               {VALUES.map((v) => (
-                <StaggerItem key={v}><span className="rounded-full bg-brand px-5 py-2 text-sm font-medium text-white">{v}</span></StaggerItem>
+                <StaggerItem key={v} className="shrink-0">
+                  <span className="whitespace-nowrap rounded-full bg-brand px-5 py-2 text-sm font-medium text-white">{v}</span>
+                </StaggerItem>
               ))}
             </Stagger>
           </div>

@@ -75,16 +75,16 @@ function MobileMenu({ onClose }) {
       animate={{ x: 0 }}
       exit={{ x: '100%' }}
       transition={{ type: 'tween', duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-brand-dark text-white"
+      className="fixed inset-0 z-[60] flex flex-col overflow-hidden bg-brand-dark text-white"
       role="dialog"
       aria-modal="true"
       aria-label="Mobile navigation"
     >
-      <div className="flex items-center justify-between px-5 py-4">
+      <div className="flex shrink-0 items-center justify-between px-5 py-4">
         <Logo />
         <button onClick={onClose} aria-label="Close menu" className="rounded-full bg-white/10 p-2.5"><X size={22} /></button>
       </div>
-      <ul className="flex-1 space-y-1 px-5 pb-6 pt-4">
+      <ul className="min-h-0 flex-1 space-y-1 overflow-y-auto px-5 pb-4 pt-3">
         {NAV.map((item) => (
           <li key={item.to} className="border-b border-white/10">
             {item.children ? (
@@ -119,7 +119,7 @@ function MobileMenu({ onClose }) {
           </li>
         ))}
       </ul>
-      <div className="px-5 pb-8">
+      <div className="shrink-0 border-t border-white/10 bg-brand-dark px-5 py-3">
         <Link onClick={onClose} to="/donate" className="btn btn-primary w-full"><Heart size={16} /> DONATE NOW</Link>
       </div>
     </motion.div>

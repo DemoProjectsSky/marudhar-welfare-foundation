@@ -84,9 +84,9 @@ export default function Footer() {
         <div className="mt-14 rounded-2xl border border-white/10 bg-white/5 p-5 text-xs leading-relaxed sm:p-6">
           <p className="mb-2 font-sans text-sm font-semibold text-white">Registration Details</p>
           <p className="grid gap-x-8 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
-            <span><b className="text-white/90">CIN:</b> {ORG.cin}</span>
-            <span><b className="text-white/90">Section 8 Licence:</b> {ORG.section8}</span>
-            <span><b className="text-white/90">CSR Registration:</b> {ORG.csr}</span>
+            <span><b className="text-white/90">CIN No.:</b> {ORG.cin}</span>
+            <span><b className="text-white/90">Section 8 Licence No. : </b> {ORG.section8}</span>
+            <span><b className="text-white/90">CSR Registration No. :</b> {ORG.csr}</span>
             <span><b className="text-white/90">Tax Registration:</b> {ORG.tax}</span>
             <span><b className="text-white/90">Certification:</b> {ORG.iso}</span>
           </p>
