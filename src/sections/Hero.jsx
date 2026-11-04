@@ -1,21 +1,28 @@
 import { Link } from 'react-router-dom'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, Heart } from 'lucide-react'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { ArrowRight, ChevronDown, Heart } from 'lucide-react'
 import SmartImg from '../components/SmartImg.jsx'
+import Magnetic from '../components/Magnetic.jsx'
 import { IMG } from '../data/images.js'
 
 const ease = [0.22, 1, 0.36, 1]
 const words = ['Together,', 'We', 'Can', 'Create', 'a', 'Better', 'Tomorrow.']
 
 export default function Hero() {
+  const reduce = useReducedMotion()
   const { scrollY } = useScroll()
-  const bgY = useTransform(scrollY, [0, 800], [0, 160])
+  const bgY = useTransform(scrollY, [0, 800], [0, reduce ? 0 : 160])
 
   return (
     <section className="relative isolate flex min-h-screen items-center overflow-hidden bg-brand-dark text-white" aria-label="Introduction">
       {/* Full-bleed photograph */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 -z-20">
-        <motion.div initial={{ scale: 1.15 }} animate={{ scale: 1 }} transition={{ duration: 2.4, ease }} className="h-[115%] w-full">
+        <motion.div
+          initial={{ scale: reduce ? 1 : 1.04 }}
+          animate={reduce ? { scale: 1 } : { scale: [1.04, 1.12] }}
+          transition={{ duration: 24, repeat: reduce ? 0 : Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+          className="h-[115%] w-full"
+        >
           <SmartImg src={IMG.hero} alt="Children smiling together" eager className="h-full w-full object-cover" />
         </motion.div>
       </motion.div>
@@ -58,22 +65,39 @@ export default function Hero() {
             Empowering communities, transforming lives, and building a future where everyone has the opportunity to thrive.
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 1.4, ease }}
-            className="mt-9 flex flex-wrap justify-center gap-4"
-          >
-            <Link to="/donate" className="btn btn-primary group">
-              <Heart size={16} className="transition group-hover:fill-red-500 group-hover:text-red-500" /> Donate Now
-            </Link>
-            <Link to="/our-work" className="btn btn-ghost group">
-              Explore Our Work <ArrowRight size={16} className="transition group-hover:translate-x-1" />
-            </Link>
-          </motion.div>
+          <div className="mt-9 flex flex-wrap justify-center gap-4">
+            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.4, ease }}>
+              <Magnetic>
+                <Link to="/donate" className="btn btn-primary group">
+                  <Heart size={16} className="transition group-hover:fill-red-500 group-hover:text-red-500" /> Donate Now
+                </Link>
+              </Magnetic>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.56, ease }}>
+              <Magnetic>
+                <Link to="/our-work" className="btn btn-ghost group">
+                  Explore Our Work <ArrowRight size={16} className="transition group-hover:translate-x-1" />
+                </Link>
+              </Magnetic>
+            </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-     
+      <a
+        href="#after-hero"
+        aria-label="Scroll to explore"
+        className="absolute bottom-5 left-1/2 z-10 grid h-10 w-10 -translate-x-1/2 place-items-center rounded-full border border-brand/15 bg-white/80 text-brand shadow-sm backdrop-blur"
+      >
+        <motion.span
+          animate={reduce ? { y: 0 } : { y: [0, 5, 0] }}
+          transition={{ duration: 1.4, repeat: reduce ? 0 : Infinity, ease: 'easeInOut' }}
+        >
+          <ChevronDown size={20} />
+        </motion.span>
+      </a>
+
       {/* Wave transition */}
       <svg className="absolute bottom-[-1px] left-0 w-full text-white" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
         <path fill="currentColor" d="M0,120 L0,70 C180,20 360,110 600,70 C840,30 1080,0 1440,60 L1440,120 Z" />

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Play, X, ChevronLeft, ChevronRight, ZoomIn, ArrowRight } from 'lucide-react'
 import SmartImg from '../components/SmartImg.jsx'
 import SectionTitle from '../components/SectionTitle.jsx'
@@ -59,6 +59,7 @@ function Lightbox({ items, index, onClose, onNav }) {
 export function GalleryGrid({ limit }) {
   const [cat, setCat] = useState('All')
   const [open, setOpen] = useState(null)
+  const reduce = useReducedMotion()
   let items = cat === 'All' ? GALLERY : GALLERY.filter((g) => g.cat === cat)
   if (limit) items = items.slice(0, limit)
 
@@ -83,10 +84,12 @@ export function GalleryGrid({ limit }) {
           {items.map((g, idx) => (
             <motion.button
               layout key={g.id} type="button" onClick={() => setOpen(idx)}
-              initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.92 }}
-              transition={{ duration: 0.4 }}
+              initial={reduce ? { opacity: 1 } : { opacity: 0, scale: 0.96, clipPath: 'inset(0 0 14% 0)' }}
+              animate={{ opacity: 1, scale: 1, clipPath: 'inset(0 0 0% 0)' }}
+              exit={reduce ? { opacity: 1 } : { opacity: 0, scale: 0.96 }}
+              transition={{ duration: reduce ? 0 : 0.55, delay: reduce ? 0 : (idx % 6) * 0.045, ease: [0.22, 1, 0.36, 1] }}
               aria-label={`Open ${g.title}`}
-              className="group relative mb-4 block w-full overflow-hidden rounded-3xl text-left"
+              className="card-motion group relative mb-4 block w-full overflow-hidden rounded-3xl text-left"
             >
               <SmartImg src={g.src} alt={g.title} className={`w-full object-cover transition duration-700 group-hover:scale-110 ${g.h === 'tall' ? 'aspect-[3/4]' : 'aspect-[4/3]'}`} />
               <div className="absolute inset-0 flex flex-col items-start justify-end bg-gradient-to-t from-ink/80 via-transparent to-transparent p-5 opacity-0 transition duration-300 group-hover:opacity-100">

@@ -9,7 +9,7 @@ export function StoryCard({ s, i = 0, big = false }) {
   const masks = ['blob-a', 'arch', 'blob-b']
   return (
     <Reveal delay={i * 0.12} className="h-full">
-      <article className={`group flex h-full flex-col gap-5 rounded-[2rem] bg-white p-5 shadow-lg shadow-brand/10 ring-1 ring-black/5 ${big ? 'sm:flex-row sm:items-center' : ''}`}>
+      <article className={`card-motion group flex h-full flex-col gap-5 rounded-[2rem] bg-white p-5 shadow-lg shadow-brand/10 ring-1 ring-black/5 ${big ? 'sm:flex-row sm:items-center' : ''}`}>
         <div className={`${masks[i % 3]} shrink-0 overflow-hidden ${big ? 'h-64 sm:h-56 sm:w-56' : 'h-60'}`}>
           <SmartImg src={s.img} alt={s.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
         </div>

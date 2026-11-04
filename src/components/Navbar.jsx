@@ -27,7 +27,7 @@ function DesktopItem({ item, solid }) {
       <NavLink
         to={item.to}
         end={item.to === '/'}
-        className={`relative flex items-center gap-1 whitespace-nowrap px-2.5 py-2 text-[13px] font-medium transition-colors ${color} ${active ? (solid ? '!text-brand' : '!text-white') : ''}`}
+        className={`relative flex items-center gap-1 whitespace-nowrap px-2.5 py-2 text-[13px] font-medium transition-colors ${color} ${active ? (solid ? '!text-brand' : '!text-white') : 'after:absolute after:inset-x-2.5 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-gold after:transition-transform after:duration-300 hover:after:scale-x-100'}`}
       >
         {item.label}
         {item.children && <ChevronDown size={13} className={`transition-transform ${open ? 'rotate-180' : ''}`} />}

@@ -29,7 +29,7 @@ export default function CSRSection() {
               </Reveal>
               <Stagger className="mt-8 grid gap-4 sm:grid-cols-2">
                 {perks.map(({ icon: Icon, t, d }) => (
-                  <StaggerItem key={t} className="rounded-2xl bg-white/10 p-4 ring-1 ring-white/10 backdrop-blur">
+                  <StaggerItem key={t} className="card-motion rounded-2xl bg-white/10 p-4 ring-1 ring-white/10 backdrop-blur">
                     <Icon size={22} className="mb-2 text-gold" />
                     <p className="font-semibold">{t}</p>
                     <p className="text-xs text-white/70">{d}</p>

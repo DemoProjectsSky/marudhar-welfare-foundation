@@ -9,7 +9,7 @@ import { FOCUS } from '../data/site.js'
 function Overlay({ f, i }) {
   const Icon = f.icon
   return (
-    <Link to={`/our-work/${f.slug}`} className="group relative block h-full min-h-[360px] overflow-hidden rounded-[2rem]">
+    <Link to={`/our-work/${f.slug}`} className="card-motion group relative block h-full min-h-[360px] overflow-hidden rounded-[2rem]">
       <SmartImg src={f.img} alt={f.title} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110" />
       <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 p-7 text-white">
@@ -25,7 +25,7 @@ function Overlay({ f, i }) {
 function Split({ f }) {
   const Icon = f.icon
   return (
-    <Link to={`/our-work/${f.slug}`} className="group flex h-full min-h-[360px] flex-col overflow-hidden rounded-[2rem] bg-white shadow-lg shadow-brand/10 ring-1 ring-black/5">
+    <Link to={`/our-work/${f.slug}`} className="card-motion group flex h-full min-h-[360px] flex-col overflow-hidden rounded-[2rem] bg-white shadow-lg shadow-brand/10 ring-1 ring-black/5">
       <div className="relative h-1/2 min-h-[170px] overflow-hidden">
         <SmartImg src={f.img} alt={f.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
         <span className="absolute bottom-3 right-3 grid h-12 w-12 place-items-center rounded-full bg-leaf text-white"><Icon size={22} /></span>
@@ -42,7 +42,7 @@ function Split({ f }) {
 function Circle({ f }) {
   const Icon = f.icon
   return (
-    <Link to={`/our-work/${f.slug}`} className="group flex h-full min-h-[360px] flex-col items-center justify-center rounded-[2rem] bg-brand p-7 text-center text-white">
+    <Link to={`/our-work/${f.slug}`} className="card-motion group flex h-full min-h-[360px] flex-col items-center justify-center rounded-[2rem] bg-brand p-7 text-center text-white">
       <div className="blob-a relative mb-5 h-36 w-36 overflow-hidden border-4 border-gold transition duration-500 group-hover:rotate-6 group-hover:scale-105">
         <SmartImg src={f.img} alt={f.title} className="h-full w-full object-cover" />
       </div>
@@ -56,7 +56,7 @@ function Circle({ f }) {
 function Tall({ f }) {
   const Icon = f.icon
   return (
-    <Link to={`/our-work/${f.slug}`} className="group relative flex h-full min-h-[360px] flex-col justify-end overflow-hidden rounded-t-[200px] rounded-b-[2rem] bg-leaf p-7 text-white">
+    <Link to={`/our-work/${f.slug}`} className="card-motion group relative flex h-full min-h-[360px] flex-col justify-end overflow-hidden rounded-t-[200px] rounded-b-[2rem] bg-leaf p-7 text-white">
       <SmartImg src={f.img} alt={f.title} className="absolute inset-x-0 top-0 h-3/5 w-full object-cover transition duration-700 group-hover:scale-105" />
       <div className="absolute inset-x-0 top-[42%] h-1/4 bg-gradient-to-t from-leaf to-transparent" />
       <div className="relative">
@@ -71,7 +71,7 @@ function Tall({ f }) {
 function Outline({ f }) {
   const Icon = f.icon
   return (
-    <Link to={`/our-work/${f.slug}`} className="group relative flex h-full min-h-[360px] flex-col justify-between overflow-hidden rounded-[2rem] border-2 border-dashed border-brand/25 bg-mist p-7 transition hover:border-solid hover:border-gold">
+    <Link to={`/our-work/${f.slug}`} className="card-motion group relative flex h-full min-h-[360px] flex-col justify-between overflow-hidden rounded-[2rem] border-2 border-dashed border-brand/25 bg-mist p-7 transition hover:border-solid hover:border-gold">
       <div className="flex items-start justify-between">
         <span className="grid h-14 w-14 place-items-center rounded-2xl bg-brand text-white transition group-hover:rotate-12"><Icon size={26} /></span>
         <ArrowUpRight className="text-brand/40 transition group-hover:text-gold" />
@@ -88,7 +88,7 @@ function Outline({ f }) {
 function Gold({ f }) {
   const Icon = f.icon
   return (
-    <Link to={`/our-work/${f.slug}`} className="group relative block h-full min-h-[360px] overflow-hidden rounded-[2rem] bg-gold">
+    <Link to={`/our-work/${f.slug}`} className="card-motion group relative block h-full min-h-[360px] overflow-hidden rounded-[2rem] bg-gold">
       <SmartImg src={f.img} alt={f.title} className="absolute inset-0 h-full w-full object-cover mix-blend-multiply opacity-50 transition duration-700 group-hover:scale-110" />
       <div className="relative flex h-full flex-col justify-between p-7 text-ink">
         <Icon size={34} />

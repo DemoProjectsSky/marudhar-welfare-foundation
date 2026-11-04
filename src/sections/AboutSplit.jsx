@@ -50,12 +50,12 @@ export default function AboutSplit() {
           </Reveal>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            <Reveal delay={0.25} className="rounded-3xl bg-mist p-6">
+            <Reveal delay={0.25} className="card-motion rounded-3xl bg-mist p-6">
               <Target className="mb-3 text-brand" />
               <h3 className="text-lg font-bold">Our Mission</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink/70">To empower communities through sustainable programmes that create opportunity, dignity and self-reliance.</p>
             </Reveal>
-            <Reveal delay={0.35} className="rounded-3xl bg-mist p-6">
+            <Reveal delay={0.35} className="card-motion rounded-3xl bg-mist p-6">
               <Eye className="mb-3 text-leaf" />
               <h3 className="text-lg font-bold">Our Vision</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink/70">A society where every person has the opportunity to learn, stay healthy and thrive.</p>

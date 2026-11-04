@@ -13,7 +13,7 @@ export default function StatsBand() {
           {STATS.map((s, i) => {
             const Icon = icons[i]
             return (
-              <StaggerItem key={s.label} className="group relative bg-white p-6 text-center sm:p-9">
+              <StaggerItem key={s.label} className="card-motion group relative bg-white p-6 text-center sm:p-9">
                 <span className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-leaf to-gold transition-transform duration-500 group-hover:scale-x-100" />
                 <Icon className="mx-auto mb-4 text-leaf transition group-hover:-translate-y-1 group-hover:text-brand" size={30} strokeWidth={1.5} />
                 <div className="font-display text-4xl font-bold text-brand sm:text-5xl">

@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 import SmartImg from './SmartImg.jsx'
 
 export default function PageHeader({ title, subtitle, img, crumbs = [] }) {
+  const reduce = useReducedMotion()
   const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 500], [0, 90])
+  const y = useTransform(scrollY, [0, 500], [0, reduce ? 0 : 90])
 
   return (
     <header className="relative isolate overflow-hidden bg-brand-dark pb-24 pt-40 text-white sm:pt-48">

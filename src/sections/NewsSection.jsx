@@ -8,7 +8,7 @@ import { NEWS } from '../data/site.js'
 export function NewsCard({ n, i = 0 }) {
   return (
     <Reveal delay={i * 0.1} className="h-full">
-      <article className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-lg shadow-brand/10 ring-1 ring-black/5">
+      <article className="card-motion group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-lg shadow-brand/10 ring-1 ring-black/5">
         <div className="relative aspect-[16/10] overflow-hidden">
           <SmartImg src={n.img} alt={n.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
           <span className="absolute left-4 top-4 rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white">{n.cat}</span>

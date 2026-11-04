@@ -11,9 +11,9 @@ import { ORG, VALUES, FOCUS } from '../data/site.js'
 const facts = [
   ['Organisation', ORG.name],
   ['Type', 'Section 8 Non-Profit Company'],
-  ['CIN', ORG.cin],
-  ['Section 8 Licence', ORG.section8],
-  ['CSR Registration', ORG.csr],
+  ['CIN NO.', ORG.cin],
+  ['Section 8 Licence NO.', ORG.section8],
+  ['CSR Registration NO. ', ORG.csr],
   ['Tax Registrations', ORG.tax],
   ['Certification', ORG.iso],
   ['Registered Office', ORG.address],
