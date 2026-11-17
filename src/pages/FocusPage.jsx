@@ -52,23 +52,29 @@ export default function FocusPage() {
       </section>
 
       {related.length > 0 && (
-        <section className="section-pad bg-mist">
+        <section className="section-pad min-h-0 bg-mist">
           <div className="container-x">
             <SectionTitle eyebrow="Related Projects" title={`${f.title} projects`} />
-            <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
-              {related.map((p, i) => <ProjectCard key={p.slug} p={p} delay={i * 0.1} />)}
+            <div className={`grid gap-7 ${related.length === 1 ? 'lg:grid-cols-1' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
+              {related.map((p, i) => <ProjectCard key={p.slug} p={p} delay={i * 0.1} wide={related.length === 1} />)}
             </div>
           </div>
         </section>
       )}
 
-      <section className="section-pad bg-white">
+      <section className="section-pad min-h-0 bg-white">
         <div className="container-x">
           <SectionTitle eyebrow="Explore More" title="Other focus areas" />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {others.map((o) => (
-              <Link key={o.slug} to={`/our-work/${o.slug}`} className="group flex items-center justify-between rounded-2xl bg-mist p-5 text-sm font-semibold transition hover:bg-brand hover:text-white">
-                {o.title}<ArrowRight size={16} className="transition group-hover:translate-x-1" />
+              <Link key={o.slug} to={`/our-work/${o.slug}`} className="group relative block min-h-[250px] overflow-hidden rounded-2xl shadow-lg shadow-brand/10">
+                <SmartImg src={o.cardImg || o.img} alt={o.title} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/45 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+                  <h3 className="text-lg font-semibold">{o.title}</h3>
+                  <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-white/80">{o.short}</p>
+                  <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-gold">Explore area <ArrowRight size={15} className="transition group-hover:translate-x-1" /></span>
+                </div>
               </Link>
             ))}
           </div>

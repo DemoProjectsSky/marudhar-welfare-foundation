@@ -42,37 +42,37 @@ export const ENV = {
 // ---------------- FOCUS AREAS ----------------
 export const FOCUS = [
   {
-    slug: 'education', title: 'Education', icon: GraduationCap, img: IMG.education,
+    slug: 'education', title: 'Education', icon: GraduationCap, img: IMG.education, cardImg: thumb('seminar-hall'),
     short: 'Learning opportunities, school support and digital literacy for children and youth.',
     intro: 'Education is the strongest foundation for lasting change. Our education focus area is about helping children and young people access learning, stay in school and build skills for the future.',
     points: ['Learning support and school-readiness activities', 'Educational material and stationery support', 'Digital literacy and career awareness sessions', 'Scholarship and mentoring initiatives'],
   },
   {
-    slug: 'healthcare', title: 'Healthcare', icon: HeartPulse, img: IMG.healthcare,
+    slug: 'healthcare', title: 'Healthcare', icon: HeartPulse, img: IMG.healthcare, cardImg: thumb('health-camp-tent-1'),
     short: 'Health camps, awareness drives and access to basic care for rural families.',
     intro: 'Good health should not depend on where a family lives. We work towards bringing basic healthcare information and services closer to remote and under-served communities.',
     points: ['Medical and health check-up camps', 'Health, hygiene and nutrition awareness', 'Support for referrals to hospitals and specialists', 'Blood donation and wellness drives'],
   },
   {
-    slug: 'women-child-development', title: 'Women & Child Development', icon: Users, img: IMG.women,
+    slug: 'women-child-development', title: 'Women & Child Development', icon: Users, img: IMG.women, cardImg: thumb('hospital-gift-handover'),
     short: 'Skill building, livelihood support and safe growth for women and children.',
     intro: 'Empowered women build stronger families and communities. We focus on skill development, self-reliance and the wellbeing of children, so that every child can grow safely and confidently.',
     points: ['Skill training and self-help group support', 'Livelihood and entrepreneurship guidance', 'Child nutrition and early-care awareness', 'Awareness on rights, safety and schemes'],
   },
   {
-    slug: 'environment', title: 'Environmental Protection', icon: TreePine, img: IMG.environment,
+    slug: 'environment', title: 'Environmental Protection', icon: TreePine, img: IMG.environment, cardImg: thumb('water-day-pledge'),
     short: 'Tree plantation, water conservation and climate awareness in desert communities.',
     intro: 'In the Thar region, every tree and every drop of water matters. Our environment focus supports greener, more resilient villages through community participation.',
     points: ['Tree plantation and care drives', 'Water conservation awareness', 'Cleanliness and waste-management campaigns', 'Environmental education in schools'],
   },
   {
-    slug: 'rural-development', title: 'Rural Development', icon: Tractor, img: IMG.rural,
+    slug: 'rural-development', title: 'Rural Development', icon: Tractor, img: IMG.rural, cardImg: thumb('health-camp-tent-2'),
     short: 'Village infrastructure, livelihoods and awareness of government schemes.',
     intro: 'Strong villages make a strong nation. We support rural communities with practical development activities, linkages to schemes and livelihood opportunities.',
     points: ['Awareness and access to government schemes', 'Farmer and livelihood support activities', 'Community infrastructure support', 'Village-level capacity building'],
   },
   {
-    slug: 'social-welfare', title: 'Social Welfare', icon: HandHeart, img: IMG.welfare,
+    slug: 'social-welfare', title: 'Social Welfare', icon: HandHeart, img: IMG.welfare, cardImg: thumb('health-camp-checkup'),
     short: 'Support for the elderly, families in need and vulnerable communities.',
     intro: 'Compassion in action: we stand beside people who need support the most, from families facing hardship to elders and the differently-abled.',
     points: ['Essential relief and support for families in need', 'Care and companionship for the elderly', 'Community awareness campaigns', 'Support during emergencies and disasters'],
@@ -143,6 +143,7 @@ export const PROJECTS = [
     title: 'Community Health Camps',
     cat: 'Healthcare',
     img: full('health-camp-tent-2'),
+    cardImg: thumb('health-camp-tent-2'),
     location: 'Bap, Rajasthan',
     status: 'Ongoing',
     short: 'Open-air health camps bringing basic care and medicines closer to village families.',
