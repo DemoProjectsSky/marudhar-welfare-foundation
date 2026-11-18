@@ -3,7 +3,7 @@ import { ImageIcon } from 'lucide-react'
 
 /** Lazy-loaded image: shows a shimmering skeleton until the file arrives, then fades in.
  *  Falls back to a branded placeholder if the file fails to load. */
-export default function SmartImg({ src, alt = '', className = '', eager = false, pos, style, ...rest }) {
+export default function SmartImg({ src, alt = '', className = '', eager = false, stable = false, pos, style, ...rest }) {
   const [failed, setFailed] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const ref = useRef(null)
@@ -25,12 +25,12 @@ export default function SmartImg({ src, alt = '', className = '', eager = false,
       ref={ref}
       src={src}
       alt={alt}
-      loading={eager ? 'eager' : 'lazy'}
-      fetchpriority={eager ? 'high' : undefined}
-      decoding="async"
+      loading={eager || stable ? 'eager' : 'lazy'}
+      fetchPriority={eager || stable ? 'high' : undefined}
+      decoding={stable ? 'sync' : 'async'}
       onLoad={() => setLoaded(true)}
       onError={() => setFailed(true)}
-      className={`${className} ${loaded ? 'img-in' : 'skeleton'}`}
+      className={`${className} ${stable ? '' : (loaded ? 'img-in' : 'skeleton')}`}
       style={pos ? { objectPosition: pos, ...style } : style}
       {...rest}
     />

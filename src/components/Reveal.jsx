@@ -10,8 +10,8 @@ export function Reveal({ children, delay = 0, direction = 'up', className = '', 
   return (
     <Tag
       className={className}
-      initial={reduce ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, ...offsets[direction] }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      initial={false}
+      animate={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: reduce ? 0 : 0.8, delay: reduce ? 0 : delay, ease }}
     >
@@ -26,8 +26,8 @@ export function ImageReveal({ children, className = '', delay = 0 }) {
   return (
     <motion.div
       className={className}
-      initial={reduce ? { clipPath: 'inset(0 0 0% 0)', scale: 1 } : { clipPath: 'inset(0 0 100% 0)', scale: 1.08 }}
-      whileInView={{ clipPath: 'inset(0 0 0% 0)', scale: 1 }}
+      initial={false}
+      animate={{ clipPath: 'inset(0 0 0% 0)', scale: 1 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: reduce ? 0 : 1.1, delay: reduce ? 0 : delay, ease }}
     >
@@ -52,8 +52,8 @@ export function Stagger({ children, className = '' }) {
     <motion.div
       className={className}
       variants={stagger}
-      initial={reduce ? 'show' : 'hidden'}
-      whileInView="show"
+      initial={false}
+      animate="show"
       viewport={{ once: true, margin: '-60px' }}
     >
       {children}
@@ -64,7 +64,7 @@ export const StaggerItem = ({ children, className = '' }) => {
   const reduce = useReducedMotion()
   return (
     <motion.div
-      variants={reduce ? { hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } } : item}
+      variants={{ hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } }}
       className={className}
     >
       {children}

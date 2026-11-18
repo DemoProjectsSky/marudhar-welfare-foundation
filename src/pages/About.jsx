@@ -29,7 +29,7 @@ export default function About() {
         <div className="container-x grid items-center gap-14 lg:grid-cols-2">
           <ImageReveal>
             <div className="overflow-hidden rounded-3xl shadow-2xl">
-              <SmartImg src={IMG.about1} alt="Foundation volunteers at a community health camp" className="aspect-[4/5] w-full object-cover lg:aspect-auto lg:h-[62svh]" />
+              <SmartImg src={IMG.about1} alt="Foundation volunteers at a community health camp" stable className="aspect-[4/5] w-full object-cover lg:aspect-auto lg:h-[62svh]" />
             </div>
           </ImageReveal>
           <div>
@@ -82,10 +82,14 @@ export default function About() {
           <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {FOCUS.map((f) => (
               <StaggerItem key={f.slug}>
-                <Link to={`/our-work/${f.slug}`} className="group block rounded-3xl bg-mist p-6 transition hover:-translate-y-1 hover:bg-brand hover:text-white">
-                  <f.icon className="mb-3 text-leaf group-hover:text-gold" />
-                  <h3 className="text-lg font-bold">{f.title}</h3>
-                  <p className="mt-1 text-sm opacity-75">{f.short}</p>
+                <Link to={`/our-work/${f.slug}`} className="group relative block min-h-56 overflow-hidden rounded-3xl bg-mist shadow-lg shadow-brand/10 transition hover:-translate-y-1">
+                  <SmartImg src={f.img} alt={f.title} stable className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/55 to-brand-dark/10" />
+                  <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                    <f.icon className="mb-3 text-gold" />
+                    <h3 className="text-lg font-bold">{f.title}</h3>
+                    <p className="mt-1 line-clamp-2 text-sm text-white/75">{f.short}</p>
+                  </div>
                 </Link>
               </StaggerItem>
             ))}

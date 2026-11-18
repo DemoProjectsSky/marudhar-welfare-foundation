@@ -9,7 +9,7 @@ function Card({ f }) {
   const Icon = f.icon
   return (
     <Link to={`/our-work/${f.slug}`} className="card-motion group relative block h-[260px] overflow-hidden rounded-2xl shadow-lg shadow-brand/10 lg:h-[clamp(160px,27svh,260px)]">
-      <SmartImg src={f.img} alt={f.title} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+      <SmartImg src={f.img} alt={f.title} stable className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
       <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/55 to-brand-dark/5" />
       <div className="absolute inset-x-0 bottom-0 p-5 text-white">
         <div className="flex items-center gap-2.5">

@@ -25,7 +25,7 @@ export default function FocusPage() {
           <ImageReveal>
             <div className="relative">
               <div className="leaf-mask overflow-hidden shadow-2xl">
-                <SmartImg src={f.img} alt={f.title} className="aspect-[4/5] w-full object-cover" />
+                <SmartImg src={f.img} alt={f.title} stable className="aspect-[4/5] w-full object-cover" />
               </div>
               <span className="absolute -bottom-5 -right-3 grid h-20 w-20 place-items-center rounded-full bg-gold text-ink shadow-xl"><Icon size={34} /></span>
             </div>
@@ -60,7 +60,7 @@ export default function FocusPage() {
               {related.length < 3 && (
                 <Reveal delay={0.2} className="h-full">
                   <article className="card-motion h-full overflow-hidden rounded-2xl bg-white shadow-lg shadow-brand/10">
-                    <SmartImg src={f.img} alt={`${f.title} programme`} className="aspect-[16/10] w-full object-cover" />
+                    <SmartImg src={f.img} alt={`${f.title} programme`} stable className="aspect-[16/10] w-full object-cover" />
                     <div className="p-6">
                       <span className="eyebrow">Our approach</span>
                       <h3 className="mt-3 text-xl font-bold">Community-led {f.title.toLowerCase()}</h3>
@@ -83,7 +83,7 @@ export default function FocusPage() {
               return (
                 <Reveal key={o.slug} delay={(i % 3) * 0.08}>
                   <Link to={`/our-work/${o.slug}`} className="card-motion group relative block h-56 overflow-hidden rounded-2xl shadow-lg shadow-brand/10">
-                    <SmartImg src={o.img} alt={o.title} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                    <SmartImg src={o.img} alt={o.title} stable className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/55 to-transparent" />
                     <div className="absolute inset-x-0 bottom-0 p-5 text-white">
                       <div className="flex items-center gap-2">
