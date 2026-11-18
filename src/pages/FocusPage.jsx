@@ -25,7 +25,7 @@ export default function FocusPage() {
           <ImageReveal>
             <div className="relative">
               <div className="leaf-mask overflow-hidden shadow-2xl">
-                <SmartImg src={f.img} alt={f.title} stable className="aspect-[4/5] w-full object-cover" />
+                <SmartImg src={f.img} alt={f.title} stable className="aspect-[4/5] w-full object-cover lg:aspect-auto lg:h-[min(68svh,32rem)]" />
               </div>
               <span className="absolute -bottom-5 -right-3 grid h-20 w-20 place-items-center rounded-full bg-gold text-ink shadow-xl"><Icon size={34} /></span>
             </div>
