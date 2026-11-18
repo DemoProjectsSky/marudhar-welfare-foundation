@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Heart } from 'lucide-react'
 import Counter from '../components/Counter.jsx'
 import { STATS } from '../data/site.js'
@@ -8,75 +9,86 @@ import Magnetic from '../components/Magnetic.jsx'
 import { IMG } from '../data/images.js'
 
 const ease = [0.22, 1, 0.36, 1]
-const words = ['Together,', 'We', 'Can', 'Create', 'a', 'Better', 'Tomorrow.']
+const SLIDES = [
+  { img: IMG.hero, eyebrow: 'Shree Marudhar Welfare Foundation', title: ['Together, We Can Create', 'a Better Tomorrow.'], text: 'Empowering communities, transforming lives, and building a future where everyone has the opportunity to thrive.', cta: ['Explore Our Work', '/our-work'], alt: 'Volunteers serving villagers at a community health camp' },
+  { img: IMG.mission, eyebrow: 'Vriksh Daan Pahal', title: ['Donate a Tree,', 'Grow a Greener Bap.'], text: 'Saplings gifted to families, schools and hospitals across Bap - one tree at a time for a greener desert.', cta: ['See the Campaign', '/our-work'], alt: 'Girls taking a pledge to conserve water' },
+  { img: IMG.education, eyebrow: 'Health & Education', title: ['Free Health Camps &', 'Youth Guidance.'], text: 'Community health camps, awareness drives and career seminars that reach people where they live.', cta: ['Our Programmes', '/our-work'], alt: 'Seminar with students and guests' },
+]
+const CHIPS = [500, 1000, 2500]
 
 export default function Hero() {
   const reduce = useReducedMotion()
   const { scrollY } = useScroll()
   const bgY = useTransform(scrollY, [0, 800], [0, reduce ? 0 : 160])
+  const [i, setI] = useState(0)
+  const [pause, setPause] = useState(false)
+  useEffect(() => {
+    if (pause || reduce) return
+    const t = setInterval(() => setI((v) => (v + 1) % SLIDES.length), 7000)
+    return () => clearInterval(t)
+  }, [pause, reduce])
+  const sl = SLIDES[i]
 
   return (
-    <section className="snap-screen relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-brand-dark text-white" aria-label="Introduction">
-      {/* Full-bleed photograph */}
+    <section
+      className="snap-screen relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-brand-dark text-white" aria-label="Introduction"
+      onMouseEnter={() => setPause(true)} onMouseLeave={() => setPause(false)}
+    >
       <motion.div style={{ y: bgY }} className="absolute inset-0 -z-20">
-        <motion.div
-          initial={{ scale: reduce ? 1 : 1.04 }}
-          animate={reduce ? { scale: 1 } : { scale: [1.04, 1.12] }}
-          transition={{ duration: 24, repeat: reduce ? 0 : Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
-          className="h-[115%] w-full"
-        >
-          <SmartImg src={IMG.hero} alt="Foundation volunteers serving villagers at a community health camp" eager className="h-full w-full object-cover" />
-        </motion.div>
+        <AnimatePresence initial={false}>
+          <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.1 }} className="absolute inset-0 h-[115%] w-full">
+            <motion.div
+              initial={{ scale: 1.04 }} animate={reduce ? { scale: 1 } : { scale: 1.12 }} transition={{ duration: 9, ease: 'linear' }}
+              className="h-full w-full"
+            >
+              <SmartImg src={sl.img} alt={sl.alt} eager className="h-full w-full object-cover" />
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </motion.div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-dark/90 via-brand-dark/75 to-brand-dark/60" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-dark/75 via-brand-dark/20 to-brand-dark/55" />
 
-      <div className="container-x flex flex-1 items-center justify-center pb-6 pt-28 sm:pt-32">
-        {/* Copy */}
-        <div className="w-full max-w-5xl text-center">
-          <motion.span
-            initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2, ease }}
-            className="eyebrow justify-center !text-gold"
-          >
-            Shree Marudhar Welfare Foundation
-          </motion.span>
+      <div className="container-x flex flex-1 items-center justify-center pb-4 pt-28 sm:pt-32">
+        <div className="w-full max-w-5xl text-center" aria-live="polite">
+          <AnimatePresence mode="wait">
+            <motion.div key={i} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.6, ease }}>
+              <span className="eyebrow justify-center !text-gold">{sl.eyebrow}</span>
+              <h1 className="mt-5 font-display text-[2.5rem] font-normal leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl xl:text-[4.5rem]">
+                {sl.title[0]} <span className="block italic text-gold sm:inline">{sl.title[1]}</span>
+              </h1>
+              <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">{sl.text}</p>
+              <div className="mt-7 flex flex-wrap justify-center gap-3 sm:gap-4">
+                <Magnetic>
+                  <Link to="/donate" className="btn btn-primary group">
+                    <Heart size={16} className="transition group-hover:fill-red-500 group-hover:text-red-500" /> Donate Now
+                  </Link>
+                </Magnetic>
+                <Magnetic>
+                  <Link to={sl.cta[1]} className="btn btn-ghost group">
+                    {sl.cta[0]} <ArrowRight size={16} className="transition group-hover:translate-x-1" />
+                  </Link>
+                </Magnetic>
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
-          <h1 className="mt-6 font-display text-[2.75rem] font-normal leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl xl:text-[5rem]" aria-label="Together, We Can Create a Better Tomorrow.">
-            {words.map((w, i) => (
-              <span key={i} className="mr-[0.25em] inline-block overflow-hidden align-bottom" aria-hidden="true">
-                <motion.span
-                  className={`inline-block ${w === 'Better' || w === 'Tomorrow.' ? 'italic text-gold' : ''}`}
-                  initial={{ y: '110%' }} animate={{ y: 0 }}
-                  transition={{ duration: 0.9, delay: 0.4 + i * 0.09, ease }}
-                >
-                  {w}
-                </motion.span>
-              </span>
+          {/* Quick donate */}
+          <div className="mx-auto mt-6 flex max-w-md flex-wrap items-center justify-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 backdrop-blur-md">
+            <span className="px-2 text-xs font-medium uppercase tracking-wider text-white/70">Quick give</span>
+            {CHIPS.map((a) => (
+              <Link key={a} to={`/donate?amt=${a}`} className="rounded-full bg-white/15 px-3.5 py-1.5 text-sm font-semibold transition hover:bg-gold hover:text-brand-dark">
+                ₹{a.toLocaleString('en-IN')}
+              </Link>
             ))}
-          </h1>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 1.2, ease }}
-            className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
-          >
-            Empowering communities, transforming lives, and building a future where everyone has the opportunity to thrive.
-          </motion.p>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.4, ease }}>
-              <Magnetic>
-                <Link to="/donate" className="btn btn-primary group">
-                  <Heart size={16} className="transition group-hover:fill-red-500 group-hover:text-red-500" /> Donate Now
-                </Link>
-              </Magnetic>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.56, ease }}>
-              <Magnetic>
-                <Link to="/our-work" className="btn btn-ghost group">
-                  Explore Our Work <ArrowRight size={16} className="transition group-hover:translate-x-1" />
-                </Link>
-              </Magnetic>
-            </motion.div>
+          {/* Slide dots */}
+          <div className="mt-5 flex justify-center gap-2" role="tablist" aria-label="Campaign slides">
+            {SLIDES.map((_, n) => (
+              <button key={n} role="tab" aria-selected={n === i} aria-label={`Slide ${n + 1}`} onClick={() => setI(n)}
+                className={`h-1.5 rounded-full transition-all ${n === i ? 'w-8 bg-gold' : 'w-3 bg-white/40 hover:bg-white/70'}`} />
+            ))}
           </div>
         </div>
       </div>

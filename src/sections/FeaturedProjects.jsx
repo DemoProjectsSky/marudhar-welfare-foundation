@@ -5,12 +5,12 @@ import SectionTitle from '../components/SectionTitle.jsx'
 import { Reveal } from '../components/Reveal.jsx'
 import { PROJECTS } from '../data/site.js'
 
-export function ProjectCard({ p, delay = 0, wide = false }) {
+export function ProjectCard({ p, delay = 0 }) {
   return (
     <Reveal delay={delay}>
-      <article className={`group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-lg shadow-brand/10 ring-1 ring-black/5 transition duration-500 hover:-translate-y-2 hover:shadow-2xl ${wide ? 'lg:min-h-[280px] lg:flex-row' : ''}`}>
-        <div className={`media-h relative overflow-hidden ${wide ? 'lg:h-auto lg:w-2/5 lg:shrink-0' : ''}`}>
-          <SmartImg src={p.cardImg || p.img} pos={p.pos} alt={p.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+      <article className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-lg shadow-brand/10 ring-1 ring-black/5 transition duration-500 hover:-translate-y-2 hover:shadow-2xl">
+        <div className="media-h relative overflow-hidden">
+          <SmartImg src={p.img} pos={p.pos} alt={p.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
           <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-brand">{p.cat}</span>
           <span className="absolute right-4 top-4 rounded-full bg-gold px-3 py-1 text-xs font-semibold text-ink">{p.status}</span>
         </div>

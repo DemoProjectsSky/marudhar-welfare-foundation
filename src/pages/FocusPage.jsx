@@ -52,31 +52,51 @@ export default function FocusPage() {
       </section>
 
       {related.length > 0 && (
-        <section className="section-pad min-h-0 bg-mist">
+        <section className="section-pad bg-mist">
           <div className="container-x">
             <SectionTitle eyebrow="Related Projects" title={`${f.title} projects`} />
-            <div className={`grid gap-7 ${related.length === 1 ? 'lg:grid-cols-1' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
-              {related.map((p, i) => <ProjectCard key={p.slug} p={p} delay={i * 0.1} wide={related.length === 1} />)}
+            <div className="grid items-stretch gap-7 md:grid-cols-2 lg:grid-cols-3">
+              {related.map((p, i) => <ProjectCard key={p.slug} p={p} delay={i * 0.1} />)}
+              {related.length < 3 && (
+                <Reveal delay={0.2} className="h-full">
+                  <article className="card-motion h-full overflow-hidden rounded-2xl bg-white shadow-lg shadow-brand/10">
+                    <SmartImg src={f.img} alt={`${f.title} programme`} className="aspect-[16/10] w-full object-cover" />
+                    <div className="p-6">
+                      <span className="eyebrow">Our approach</span>
+                      <h3 className="mt-3 text-xl font-bold">Community-led {f.title.toLowerCase()}</h3>
+                      <p className="mt-3 text-sm leading-relaxed text-ink/70">{f.short}</p>
+                    </div>
+                  </article>
+                </Reveal>
+              )}
             </div>
           </div>
         </section>
       )}
 
-      <section className="section-pad min-h-0 bg-white">
+      <section className="section-pad bg-white">
         <div className="container-x">
-          <SectionTitle eyebrow="Explore More" title="Other focus areas" />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {others.map((o) => (
-              <Link key={o.slug} to={`/our-work/${o.slug}`} className="group relative block min-h-[250px] overflow-hidden rounded-2xl shadow-lg shadow-brand/10">
-                <SmartImg src={o.cardImg || o.img} alt={o.title} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/45 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                  <h3 className="text-lg font-semibold">{o.title}</h3>
-                  <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-white/80">{o.short}</p>
-                  <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-gold">Explore area <ArrowRight size={15} className="transition group-hover:translate-x-1" /></span>
-                </div>
-              </Link>
-            ))}
+          <SectionTitle eyebrow="Explore More" title="Other focus areas" text="Discover the causes we support and the work happening across Rajasthan." />
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {others.map((o, i) => {
+              const OtherIcon = o.icon
+              return (
+                <Reveal key={o.slug} delay={(i % 3) * 0.08}>
+                  <Link to={`/our-work/${o.slug}`} className="card-motion group relative block h-56 overflow-hidden rounded-2xl shadow-lg shadow-brand/10">
+                    <SmartImg src={o.img} alt={o.title} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/55 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+                      <div className="flex items-center gap-2">
+                        <OtherIcon size={18} className="shrink-0 text-gold" />
+                        <h3 className="text-base font-bold">{o.title}</h3>
+                        <ArrowRight size={16} className="ml-auto transition group-hover:translate-x-1" />
+                      </div>
+                      <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-white/80">{o.short}</p>
+                    </div>
+                  </Link>
+                </Reveal>
+              )
+            })}
           </div>
         </div>
       </section>

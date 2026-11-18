@@ -1,7 +1,7 @@
 import PageHeader from '../components/PageHeader.jsx'
 import FormShell from '../components/FormShell.jsx'
 import { Reveal } from '../components/Reveal.jsx'
-import { contactFields, ContactInfo } from '../sections/ContactSection.jsx'
+import { contactFields, ContactInfo /*, MapEmbed */ } from '../sections/ContactSection.jsx'
 import { IMG } from '../data/images.js'
 
 export default function Contact() {

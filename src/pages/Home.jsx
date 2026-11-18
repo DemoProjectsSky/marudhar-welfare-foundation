@@ -8,6 +8,8 @@ import GallerySection from '../sections/GallerySection.jsx'
 import CSRSection from '../sections/CSRSection.jsx'
 import CertificatesSection from '../sections/CertificatesSection.jsx'
 import PressStrip from '../sections/PressStrip.jsx'
+import WaysToHelp from '../sections/WaysToHelp.jsx'
+import Journey from '../sections/Journey.jsx'
 import DonateBand from '../sections/DonateBand.jsx'
 import NewsSection from '../sections/NewsSection.jsx'
 import ContactSection from '../sections/ContactSection.jsx'
@@ -26,6 +28,8 @@ export default function Home() {
       <CSRSection />
       <CertificatesSection />
       <PressStrip />
+      <Journey />
+      <WaysToHelp />
       <DonateBand />
       <NewsSection />
       <ContactSection />

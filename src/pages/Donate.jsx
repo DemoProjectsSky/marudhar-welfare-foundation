@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Heart, ShieldCheck, Info, Receipt } from 'lucide-react'
 import PageHeader from '../components/PageHeader.jsx'
 import FormShell from '../components/FormShell.jsx'
@@ -19,7 +20,9 @@ const donorFields = [
 ]
 
 export default function Donate() {
-  const [amt, setAmt] = useState(1000)
+  const [params] = useSearchParams()
+  const q = parseInt(params.get('amt'), 10)
+  const [amt, setAmt] = useState(q > 0 && q <= 1000000 ? q : 1000)
   const [notice, setNotice] = useState('')
 
   const proceed = () => {

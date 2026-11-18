@@ -71,62 +71,57 @@ function MobileMenu({ onClose }) {
   const [expanded, setExpanded] = useState(null)
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-[60]"
+      initial={{ x: '100%' }}
+      animate={{ x: 0 }}
+      exit={{ x: '100%' }}
+      transition={{ type: 'tween', duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed inset-0 z-[60] flex flex-col overflow-hidden bg-brand-dark text-white"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mobile navigation"
     >
-      <button onClick={onClose} aria-label="Close menu" className="absolute inset-y-0 left-0 w-[30%] bg-black/10" />
-      <motion.div
-        initial={{ x: '100%' }}
-        animate={{ x: 0 }}
-        exit={{ x: '100%' }}
-        transition={{ type: 'tween', duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-y-0 right-0 flex w-[70%] flex-col overflow-hidden bg-brand-dark pt-20 text-white"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Mobile navigation"
-      >
-        <ul className="min-h-0 flex-1 space-y-1 overflow-y-auto px-3 pb-4 pt-3">
-          {NAV.map((item) => (
-            <li key={item.to} className="border-b border-white/10">
-              {item.children ? (
-                <>
-                  <button
-                    onClick={() => setExpanded(expanded === item.label ? null : item.label)}
-                    className="flex w-full items-center justify-between gap-2 py-4 text-base font-medium"
-                    aria-expanded={expanded === item.label}
-                  >
-                    {item.label}
-                    <ChevronDown size={18} className={`shrink-0 transition ${expanded === item.label ? 'rotate-180' : ''}`} />
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {expanded === item.label && (
-                      <motion.ul
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="overflow-hidden pl-3"
-                      >
-                        <li><Link onClick={onClose} to={item.to} className="block py-2.5 text-white/70">All {item.label}</Link></li>
-                        {item.children.map((c) => (
-                          <li key={c.to}><Link onClick={onClose} to={c.to} className="block py-2.5 text-white/80">{c.label}</Link></li>
-                        ))}
-                      </motion.ul>
-                    )}
-                  </AnimatePresence>
-                </>
-              ) : (
-                <Link onClick={onClose} to={item.to} className="block py-4 text-base font-medium">{item.label}</Link>
-              )}
-            </li>
-          ))}
-        </ul>
-        <div className="shrink-0 border-t border-white/10 bg-brand-dark px-2 py-3">
-          <Link onClick={onClose} to="/donate" className="btn btn-primary w-full !gap-1 !px-2 text-xs"><Heart size={16} /> DONATE NOW</Link>
-        </div>
-      </motion.div>
+      <div className="flex shrink-0 items-center justify-between px-5 py-4">
+        <Logo />
+        <button onClick={onClose} aria-label="Close menu" className="rounded-full bg-white/10 p-2.5"><X size={22} /></button>
+      </div>
+      <ul className="min-h-0 flex-1 space-y-1 overflow-y-auto px-5 pb-4 pt-3">
+        {NAV.map((item) => (
+          <li key={item.to} className="border-b border-white/10">
+            {item.children ? (
+              <>
+                <button
+                  onClick={() => setExpanded(expanded === item.label ? null : item.label)}
+                  className="flex w-full items-center justify-between py-4 text-lg font-medium"
+                  aria-expanded={expanded === item.label}
+                >
+                  {item.label}
+                  <ChevronDown size={18} className={`transition ${expanded === item.label ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence initial={false}>
+                  {expanded === item.label && (
+                    <motion.ul
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden pl-3"
+                    >
+                      <li><Link onClick={onClose} to={item.to} className="block py-2.5 text-white/70">All {item.label}</Link></li>
+                      {item.children.map((c) => (
+                        <li key={c.to}><Link onClick={onClose} to={c.to} className="block py-2.5 text-white/80">{c.label}</Link></li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
+              </>
+            ) : (
+              <Link onClick={onClose} to={item.to} className="block py-4 text-lg font-medium">{item.label}</Link>
+            )}
+          </li>
+        ))}
+      </ul>
+      <div className="shrink-0 border-t border-white/10 bg-brand-dark px-5 py-3">
+        <Link onClick={onClose} to="/donate" className="btn btn-primary w-full"><Heart size={16} /> DONATE NOW</Link>
+      </div>
     </motion.div>
   )
 }
@@ -154,7 +149,7 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed inset-x-0 top-0 ${mobile ? 'z-[70]' : 'z-50'} bg-white transition-all duration-500 ${
+        className={`fixed inset-x-0 top-0 z-50 bg-white transition-all duration-500 ${
           scrolled ? 'py-2 shadow-lg shadow-brand/5' : 'py-4'
         }`}
       >
@@ -171,11 +166,11 @@ export default function Navbar() {
               DONATE NOW
             </Link>
             <button
-              onClick={() => setMobile((open) => !open)}
-              aria-label={mobile ? 'Close menu' : 'Open menu'}
+              onClick={() => setMobile(true)}
+              aria-label="Open menu"
               className="rounded-full bg-brand p-2.5 text-white xl:hidden"
             >
-              {mobile ? <X size={22} /> : <Menu size={22} />}
+              <Menu size={22} />
             </button>
           </div>
         </div>
